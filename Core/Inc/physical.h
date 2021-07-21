@@ -50,6 +50,9 @@ uint8_t PHY_u8SimInit();
 void PHY_vOnSim();
 void PHY_vOffSim();
 
+void PHY_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
+void PHY_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
+
 #ifdef __cplusplus
 }
 #endif

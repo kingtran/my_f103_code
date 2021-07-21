@@ -16,6 +16,8 @@ extern "C" {
 #include "comm.h"
 #include "physical.h"
 
+void NVM_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
+void NVM_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
 
 #ifdef __cplusplus
 }

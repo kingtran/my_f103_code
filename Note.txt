@@ -5,3 +5,10 @@
 	void SIM_vOnSim();
 	void SIM_vOffSim();
 -- Xóa các lớp không liên quan
+[21/07/2021]
+-- Thêm 2 hàm test NVM vào lớp nvm.h
+void NVM_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
+void NVM_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
+-- Thêm 2 hàm test NVM vào lớp physical.h
+void PHY_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
+void PHY_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
