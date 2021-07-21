@@ -150,7 +150,7 @@ int main(void)
 
   RTC_u8Init();
 
-  GPIO_u8Led1On();
+  GPIO_u8Led1On();// haha
 
 //  vFlashTest();
   /* USER CODE END 2 */
