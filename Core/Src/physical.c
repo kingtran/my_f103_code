@@ -1042,4 +1042,28 @@ void PHY_vOffSim()
 	HAL_GPIO_WritePin(SIM_KEY_GPIO_Port, SIM_KEY_Pin, GPIO_PIN_RESET);
 	HAL_Delay(1000);
 }
+/**
+ * @fn void PHY_vStorageSchedulerData(Scheduler_DataTypeDef*)
+ * @brief
+ *
+ * @pre
+ * @post
+ * @param pstSchedulerData
+ */
+void PHY_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData)
+{
+
+}
+/**
+ * @fn void PHY_vReadSchedulerData(Scheduler_DataTypeDef*)
+ * @brief
+ *
+ * @pre
+ * @post
+ * @param pstSchedulerData
+ */
+void PHY_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData)
+{
+
+}
 
