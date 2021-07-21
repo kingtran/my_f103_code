@@ -131,7 +131,7 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
 
-  on_sim();
+//  on_sim();
 
   u8MachineRunState = MA_STA_RUN_AUT1;
 
