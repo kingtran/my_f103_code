@@ -1,0 +1,7 @@
+[19/07/2021]
+-- Thêm lớp nvm.h/nvm.c xử lý dữ liệu liên quan tới bộ nhớ không bay hơi
+-- Thêm 3 hàm mới trong lớp sim.h
+	uint8_t SIM_u8SimInit();
+	void SIM_vOnSim();
+	void SIM_vOffSim();
+-- Xóa các lớp không liên quan
