@@ -108,6 +108,8 @@ uint8_t DBUG_u8GetCmdState()
 	//-> 04 Scheduler Data
 	//07 <crc> 04 <1 byte no of Slot> <3 bytes Hour/Minute/Value>
 	//07070301010101
+	//03 <crc> 05 -> End SCH set -> MCU storage to Flash
+	//030505
 	uint8_t u8Item = 0;
 	u8RxByte = PHY_u8Uart3ReturnRxByte();
 
@@ -203,10 +205,17 @@ uint8_t DBUG_u8GetCmdState()
 
 			PHY_u8Uart3EnbInterrupt();
 
-			if(u8DataCmd[0] == MAX_OF_SLOT)
-				return MA_STA_SET_SCH_END;
+//			if(u8DataCmd[0] == MAX_OF_SLOT)
+//				return MA_STA_SET_SCH_END;
 
 			return MA_STA_SET_SCH_UPD;
+		}
+		else if((u8RxByte[u8Item] == 0x03)
+				&& (u8RxByte[u8Item+1] ==  u8RxByte[u8Item+2])
+				&& (u8RxByte[u8Item+2] == 0x05))
+		{
+			PHY_u8Uart3EnbInterrupt();
+			return MA_STA_SET_SCH_END;
 		}
 	}
 	return 0;

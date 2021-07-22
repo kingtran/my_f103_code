@@ -12,4 +12,24 @@ void NVM_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
 -- Thêm 2 hàm test NVM vào lớp physical.h
 void PHY_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
 void PHY_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
--- Đang test hàm PHY_vStorageSchedulerData
+-- Đang test hàm PHY_vStorageSchedulerData -> OK
+[22/07/2021]
+-- Thêm lệnh 03 <crc> 05 -> End SCH set -> MCU storage to Flash 
+vào hàm DBUG_u8GetCmdState(). Ý nghĩa: Kết thúc gửi dữ liệu cái đặt cheduler, MCU tiến hành lưu vào Flash
+-- Quy trình gửi dữ liệu cài đặt scheduler
+
+SIM -----------[03 cmd       ]--------> MCU
+SIM <----------["SOK\n"      ]--------- MCU
+
+SIM -----------[04 cmd + data]--------> MCU
+SIM <----------["SROK\n"     ]--------- MCU
+SIM -----------[04 cmd + data]--------> MCU
+SIM <----------["SROK\n"     ]--------- MCU
+SIM -----------[.............]--------> MCU
+SIM <----------["SROK\n"     ]--------- MCU
+SIM -----------[.............]--------> MCU
+SIM <----------["SROK\n"     ]--------- MCU
+
+SIM -----------[05 cmd       ]--------> MCU
+SIM <----------["SEOK\n"     ]--------- MCU
+
