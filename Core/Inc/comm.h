@@ -44,6 +44,9 @@ extern "C" {
 #define DAY_OF_WEEK 7
 
 #define DATA_COLLECTION_CYCLE	1000
+#define MAX_OF_FLASH 0x0800FFFF
+#define START_OF_FLASH 0x0800F000
+#define SIZE_OF_PAGE 0x400
 
 /* USER CODE END PD */
 

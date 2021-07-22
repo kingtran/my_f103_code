@@ -16,7 +16,7 @@
  */
 void NVM_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData)
 {
-
+	PHY_vStorageSchedulerData(pstSchedulerData);
 }
 /**
  * @fn void NVM_vReadSchedulerData(Scheduler_DataTypeDef*)

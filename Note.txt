@@ -12,3 +12,4 @@ void NVM_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
 -- Thêm 2 hàm test NVM vào lớp physical.h
 void PHY_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
 void PHY_vReadSchedulerData(Scheduler_DataTypeDef* pstSchedulerData);
+-- Đang test hàm PHY_vStorageSchedulerData
