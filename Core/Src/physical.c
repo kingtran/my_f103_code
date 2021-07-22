@@ -1052,7 +1052,68 @@ void PHY_vOffSim()
  */
 void PHY_vStorageSchedulerData(Scheduler_DataTypeDef* pstSchedulerData)
 {
+	volatile HAL_StatusTypeDef status;
+	FLASH_EraseInitTypeDef EraseInitStruct;
+	volatile uint32_t u32Temp = 0x00000000;
+	volatile uint32_t u32Addr = START_OF_FLASH;
+	uint32_t u32PageError;
+	uint8_t u8LoopDay, u8LoopSlot;
+	HAL_FLASH_Unlock();
+	HAL_FLASH_OB_Unlock();
+	PHY_u8Led1On();
+	//
+	EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
+	EraseInitStruct.PageAddress = START_OF_FLASH;
+	EraseInitStruct.NbPages = 2; // 1 page = 1KB
+	status = HAL_FLASHEx_Erase(&EraseInitStruct, &u32PageError);
+	//
+	pstSchedulerData->u8Temp1 = 0x11;
+	u32Temp = (uint32_t)pstSchedulerData->u8Temp1;
+	status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, START_OF_FLASH, u32Temp);
+	u32Addr+=4;
+	pstSchedulerData->u8Temp2 = 0x22;
+	u32Temp = (uint32_t)pstSchedulerData->u8Temp2;
+	status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, START_OF_FLASH+4, u32Temp);
+	u32Addr+=4;
+	pstSchedulerData->u8Temp3 = 0x33;
+	u32Temp = (uint32_t)pstSchedulerData->u8Temp3;
+	status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, START_OF_FLASH+8, u32Temp);
+	//
 
+	for(u8LoopDay = 0; u8LoopDay < DAY_OF_WEEK; u8LoopDay++)
+	{
+		//
+		u32Addr +=4;
+		u32Temp = (uint32_t)pstSchedulerData->stSchedulerDataSlot[u8LoopDay].u8DayOfWeek;
+		status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, u32Addr, u32Temp);
+		u32Addr+=4;
+		u32Temp = (uint32_t)pstSchedulerData->stSchedulerDataSlot[u8LoopDay].u8Day;
+		status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, u32Addr, u32Temp);
+		u32Addr+=4;
+		u32Temp = (uint32_t)pstSchedulerData->stSchedulerDataSlot[u8LoopDay].u8Month;
+		status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, u32Addr, u32Temp);
+		u32Addr+=4;
+		u32Temp = (uint32_t)pstSchedulerData->stSchedulerDataSlot[u8LoopDay].u8Year;
+		status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, u32Addr, u32Temp);
+		//
+		for(u8LoopSlot = 0; u8LoopSlot < MAX_OF_SLOT; u8LoopSlot++)
+		{
+			u32Addr+=4;
+			u32Temp = (uint32_t)pstSchedulerData->stSchedulerDataSlot[u8LoopDay].stSchedulerValue[u8LoopSlot].u8Hour;
+			status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, u32Addr, u32Temp);
+			u32Addr+=4;
+			u32Temp = (uint32_t)pstSchedulerData->stSchedulerDataSlot[u8LoopDay].stSchedulerValue[u8LoopSlot].u8Minute;
+			status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, u32Addr, u32Temp);
+			u32Addr+=4;
+			u32Temp = (uint32_t)pstSchedulerData->stSchedulerDataSlot[u8LoopDay].stSchedulerValue[u8LoopSlot].u8Value;
+			status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, u32Addr, u32Temp);
+		}
+	}
+
+	if(status == HAL_OK)
+		PHY_u8Led1Off();
+	HAL_FLASH_OB_Lock();
+	HAL_FLASH_Lock();
 }
 /**
  * @fn void PHY_vReadSchedulerData(Scheduler_DataTypeDef*)
