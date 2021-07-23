@@ -33,3 +33,8 @@ SIM <----------["SROK\n"     ]--------- MCU
 SIM -----------[05 cmd       ]--------> MCU
 SIM <----------["SEOK\n"     ]--------- MCU
 
+[23/07/2021]
+-- Sao lưu lại 1 Project đặt tên "DQS_NBIoT_SmartLight_2021_07_23" chạy OK với tool "DQH_NBIOT_Tools_V1"
+-- Tiến hành chuyển giải thuật nhận dữ liệu sang kiểu nhận từng byte 1, cập nhật lại bảng lệnh trong "[StreetLight] mcu-simcom protocol"
+
+

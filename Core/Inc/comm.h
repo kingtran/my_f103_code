@@ -17,7 +17,7 @@ extern "C" {
 /* USER CODE BEGIN PD */
 #define ENB 0
 #define DIS 1
-#define RX_MAX_LEN 20
+#define RX_MAX_LEN 1
 #define TX_MAX_LEN 20
 
 #define MA_STA_CMD 0
@@ -47,6 +47,49 @@ extern "C" {
 #define MAX_OF_FLASH 0x0800FFFF
 #define START_OF_FLASH 0x0800F000
 #define SIZE_OF_PAGE 0x400
+
+/**
+GetMcuVersion
+GetControlStatus
+GetLightSensorValue
+GetPMVoltageValue
+GetPMCurrentValue
+GetPMPowerValue
+GetPMFrequencyValue
+GetLightLevelValue
+GetLightStatus
+GetTimeStatus
+GetDateStatus
+GetWarningStatus
+SetControlStatus
+SetLightLevelValue
+SetLightStatus
+SetTimeStatus
+SetDateStatus
+SetSchedulerStart
+SetSchedulerData
+SetSchedulerEnd
+ */
+#define CmdGetMcuVersion		0x00
+#define CmdGetControlStatus		0x01
+#define CmdGetLightSensorValue	0x02
+#define CmdGetPMVoltageValue	0x03
+#define CmdGetPMCurrentValue	0x04
+#define CmdGetPMPowerValue		0x05
+#define CmdGetPMFrequencyValue	0x06
+#define CmdGetLightLevelValue	0x07
+#define CmdGetLightStatus		0x08
+#define CmdGetTimeStatus		0x09
+#define CmdGetDateStatus		0x0a
+#define CmdGetWarningStatus		0x0b
+#define CmdSetControlStatus		0x0c
+#define CmdSetLightLevelValue	0x0d
+#define CmdSetLightStatus		0x0e
+#define CmdSetTimeStatus		0x0f
+#define CmdSetDateStatus		0x10
+#define CmdSetSchedulerStart	0x11
+#define CmdSetSchedulerData		0x12
+#define CmdSetSchedulerEnd		0x13
 
 /* USER CODE END PD */
 

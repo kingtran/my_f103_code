@@ -30,6 +30,7 @@ void vDataCollectStatus();
 /* USER CODE BEGIN PV */
 uint8_t u8Uart3IrptState;
 uint8_t u8Uart3RxByte[MAX_OF_LEN];
+uint8_t u8Uart3Path;
 uint8_t u8ButtonState, u8Button1Detect, u8Button2Detect;
 uint16_t u16Timer2Step;
 uint8_t u8CurrentPwmValue, u8DestPwmValue, u8SmoothPwmActive;
@@ -766,6 +767,7 @@ uint8_t PHY_u8EnbInterrupt(uint8_t u8State)
 uint8_t PHY_u8Uart3EnbInterrupt()
 {
 	uint8_t u8Flush;
+	u8Uart3Path = 0;
 	u8Uart3IrptState = 0;
 	for(u8Flush = 0; u8Flush < RX_MAX_LEN; u8Flush++)
 		u8Rx3Data[u8Flush] = 0;
@@ -819,7 +821,13 @@ __weak void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	else if(huart->Instance == huart3.Instance)
 	{
 		u8Uart3IrptState = 1;
-//		HAL_UART_Receive_IT(&huart3, (uint8_t*)u8Rx3Data, RX_MAX_LEN);
+		HAL_UART_Receive_IT(&huart3, (uint8_t*)u8Rx3Data, RX_MAX_LEN);
+		switch(u8Uart3Path)
+		{
+			case 0:
+				if(u8Rx3Data[0] == 0x01)
+			break;
+		}
 	}
 }
 /**
