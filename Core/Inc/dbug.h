@@ -12,6 +12,7 @@
 extern "C" {
 #endif
 #include "comm.h"
+#include "physical.h"
 
 uint8_t DBUG_u8Init();
 uint8_t DBUG_u8RxEnb();

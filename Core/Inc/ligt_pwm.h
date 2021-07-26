@@ -11,7 +11,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include "comm.h"
+#include "physical.h"
 
 uint8_t LIPWM_u8Init();
 uint8_t LIPWM_u8Start();

@@ -13,6 +13,7 @@ extern "C" {
 #endif
 
 #include "comm.h"
+#include "physical.h"
 
 uint8_t RTC_u8Init();
 void RTC_vGetDateTime(RTC_DateTimeTypedef* hRTC_DateTime);

@@ -4,9 +4,7 @@
  *  Created on: Jun 28, 2021
  *      Author: DQSmartIoT
  */
-#include "main.h"
 #include "rtc.h"
-#include "physical.h"
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */

@@ -8,6 +8,7 @@
 #ifndef INC_LIGT_SW_H_
 #define INC_LIGT_SW_H_
 
-
+#include "comm.h"
+#include "physical.h"
 
 #endif /* INC_LIGT_SW_H_ */

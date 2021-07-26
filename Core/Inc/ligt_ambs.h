@@ -11,7 +11,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include "comm.h"
+#include "physical.h"
 
 uint8_t LIAMBS_u8Init();
 uint16_t LIAMBS_u16Read();

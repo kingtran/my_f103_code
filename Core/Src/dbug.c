@@ -4,9 +4,8 @@
  *  Created on: Jun 28, 2021
  *      Author: DQSmartIoT
  */
-#include "main.h"
+
 #include "dbug.h"
-#include "physical.h"
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
@@ -113,7 +112,7 @@ uint8_t DBUG_u8GetCmdState()
 	uint8_t u8Item = 0;
 	u8RxByte = PHY_u8Uart3ReturnRxByte();
 
-	if(u8RxByte[0] == 0 && u8RxByte[1] == 0 && u8RxByte[1] == 0)
+	if(u8RxByte[0] == 0 && u8RxByte[1] == 0 && u8RxByte[2] == 0)
 		return 0;
 
 	for(u8Item = 0; u8Item < MAX_OF_LEN; u8Item++)
@@ -218,6 +217,88 @@ uint8_t DBUG_u8GetCmdState()
 			return MA_STA_SET_SCH_END;
 		}
 	}
+
+	if(u8RxByte[2] == CmdGetMcuVersion)
+	{
+		return StaGetMcuVersion;
+	}
+	else if(u8RxByte[2] == CmdGetControlStatus)
+	{
+		return StaGetControlStatus;
+	}
+	else if(u8RxByte[2] == CmdGetLightSensorValue)
+	{
+		return StaGetLightSensorValue;
+	}
+	else if(u8RxByte[2] == CmdGetPMVoltageValue)
+	{
+		return StaGetPMVoltageValue;
+	}
+	else if(u8RxByte[2] == CmdGetPMCurrentValue)
+	{
+		return StaGetPMCurrentValue;
+	}
+	else if(u8RxByte[2] == CmdGetPMPowerValue)
+	{
+		return StaGetPMPowerValue;
+	}
+	else if(u8RxByte[2] == CmdGetPMFrequencyValue)
+	{
+		return StaGetPMFrequencyValue;
+	}
+	else if(u8RxByte[2] == CmdGetLightLevelValue)
+	{
+		return StaGetLightLevelValue;
+	}
+	else if(u8RxByte[2] == CmdGetLightStatus)
+	{
+		return StaGetLightStatus;
+	}
+	else if(u8RxByte[2] == CmdGetTimeStatus)
+	{
+		return StaGetTimeStatus;
+	}
+	else if(u8RxByte[2] == CmdGetDateStatus)
+	{
+		return StaGetDateStatus;
+	}
+	else if(u8RxByte[2] == CmdGetWarningStatus)
+	{
+		return StaGetWarningStatus;
+	}
+	else if(u8RxByte[2] == CmdSetControlStatus)
+	{
+		return StaSetControlStatus;
+	}
+	else if(u8RxByte[2] == CmdSetLightLevelValue)
+	{
+		return StaSetLightLevelValue;
+	}
+	else if(u8RxByte[2] == CmdSetLightStatus)
+	{
+		return StaSetLightStatus;
+	}
+	else if(u8RxByte[2] == CmdSetTimeStatus)
+	{
+		return StaSetTimeStatus;
+	}
+	else if(u8RxByte[2] == CmdSetDateStatus)
+	{
+		return StaSetDateStatus;
+	}
+	else if(u8RxByte[2] == CmdSetSchedulerStart)
+	{
+		return StaSetSchedulerStart;
+	}
+	else if(u8RxByte[2] == CmdSetSchedulerData)
+	{
+		return StaSetSchedulerData;
+	}
+	else if(u8RxByte[2] == CmdSetSchedulerEnd)
+	{
+		return StaSetSchedulerEnd;
+	}
+
 	return 0;
 }
 /**

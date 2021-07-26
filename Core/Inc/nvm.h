@@ -12,7 +12,6 @@
 extern "C" {
 #endif
 
-#include "main.h"
 #include "comm.h"
 #include "physical.h"
 

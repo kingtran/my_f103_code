@@ -11,7 +11,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include "comm.h"
+#include "physical.h"
 
 #define SoftReset 0x00 // Software Reset
 #define SysStatus 0x01 // System Status

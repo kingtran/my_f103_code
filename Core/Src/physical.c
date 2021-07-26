@@ -29,8 +29,9 @@ void vDataCollectStatus();
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 uint8_t u8Uart3IrptState;
-uint8_t u8Uart3RxByte[MAX_OF_LEN];
-uint8_t u8Uart3Path;
+uint8_t u8Uart3RxByte[5];
+uint8_t u8RxByteNull[5];
+uint8_t u8Uart3Path, u8Uart3RxCount;
 uint8_t u8ButtonState, u8Button1Detect, u8Button2Detect;
 uint16_t u16Timer2Step;
 uint8_t u8CurrentPwmValue, u8DestPwmValue, u8SmoothPwmActive;
@@ -766,12 +767,12 @@ uint8_t PHY_u8EnbInterrupt(uint8_t u8State)
  */
 uint8_t PHY_u8Uart3EnbInterrupt()
 {
-	uint8_t u8Flush;
+//	uint8_t u8Flush;
 	u8Uart3Path = 0;
 	u8Uart3IrptState = 0;
-	for(u8Flush = 0; u8Flush < RX_MAX_LEN; u8Flush++)
-		u8Rx3Data[u8Flush] = 0;
-	HAL_UART_Receive_IT(&huart3, (uint8_t*)u8Rx3Data, RX_MAX_LEN);
+//	for(u8Flush = 0; u8Flush < RX_MAX_LEN; u8Flush++)
+//		u8Rx3Data[u8Flush] = 0;
+	HAL_UART_Receive_IT(&huart3, (uint8_t*)u8Uart3RxByte, 1);
 	return HAL_OK;
 }
 /**
@@ -789,7 +790,7 @@ uint8_t* PHY_u8Uart3ReturnRxByte()
 		u8Uart3IrptState = 0;
 		return (uint8_t*)u8Rx3Data;
 	}
-	return (uint8_t*)u8Uart3RxByte;
+	return (uint8_t*)u8RxByteNull;
 }
 /**
  * @fn uint8_t PHY_u8Uart3SendByte()
@@ -820,12 +821,27 @@ __weak void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	}
 	else if(huart->Instance == huart3.Instance)
 	{
-		u8Uart3IrptState = 1;
-		HAL_UART_Receive_IT(&huart3, (uint8_t*)u8Rx3Data, RX_MAX_LEN);
+		HAL_UART_Receive_IT(&huart3, (uint8_t*)u8Uart3RxByte, 1);
 		switch(u8Uart3Path)
 		{
 			case 0:
-				if(u8Rx3Data[0] == 0x01)
+				if(u8Rx3Data[0] == Start1)
+				{
+					u8Uart3RxCount = 0;
+					u8Rx3Data[u8Uart3RxCount++] = u8Uart3RxByte[0];
+					u8Uart3Path = 1;
+				}
+			break;
+			case 1:
+				u8Rx3Data[u8Uart3RxCount++] = u8Uart3RxByte[0];
+				if(u8Uart3RxCount == 3
+				&& u8Rx3Data[1] == u8Rx3Data[2])
+				{
+					u8Uart3IrptState = 1;
+					u8Uart3Path = 0;
+				}
+				else
+					u8Uart3Path = 0;
 			break;
 		}
 	}

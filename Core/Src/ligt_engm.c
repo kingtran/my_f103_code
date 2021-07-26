@@ -5,9 +5,7 @@
  *      Author: DQSmartIoT
  */
 
-#include "main.h"
 #include "ligt_engm.h"
-#include "physical.h"
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */

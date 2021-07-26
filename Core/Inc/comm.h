@@ -15,9 +15,12 @@ extern "C" {
 #include "main.h"
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define MainVersion		0x0001
+#define MajorVersion	0x0001
+
 #define ENB 0
 #define DIS 1
-#define RX_MAX_LEN 1
+#define RX_MAX_LEN 20
 #define TX_MAX_LEN 20
 
 #define MA_STA_CMD 0
@@ -48,28 +51,7 @@ extern "C" {
 #define START_OF_FLASH 0x0800F000
 #define SIZE_OF_PAGE 0x400
 
-/**
-GetMcuVersion
-GetControlStatus
-GetLightSensorValue
-GetPMVoltageValue
-GetPMCurrentValue
-GetPMPowerValue
-GetPMFrequencyValue
-GetLightLevelValue
-GetLightStatus
-GetTimeStatus
-GetDateStatus
-GetWarningStatus
-SetControlStatus
-SetLightLevelValue
-SetLightStatus
-SetTimeStatus
-SetDateStatus
-SetSchedulerStart
-SetSchedulerData
-SetSchedulerEnd
- */
+// Cmd Code
 #define CmdGetMcuVersion		0x00
 #define CmdGetControlStatus		0x01
 #define CmdGetLightSensorValue	0x02
@@ -90,6 +72,35 @@ SetSchedulerEnd
 #define CmdSetSchedulerStart	0x11
 #define CmdSetSchedulerData		0x12
 #define CmdSetSchedulerEnd		0x13
+
+#define Start1					0x03 // Buff Len = 3
+#define Start2					0x04 // Buff Len = 4
+#define Start3					0x06 // Buff Len = 6
+#define Start4					0x07 // Buff Len = 7
+#define Start5					0x0b // Buff Len = 11
+
+// State Machine
+#define StaNop					0x00
+#define StaGetMcuVersion		0xa0
+#define StaGetControlStatus		0xa1
+#define StaGetLightSensorValue	0xa2
+#define StaGetPMVoltageValue	0xa3
+#define StaGetPMCurrentValue	0xa4
+#define StaGetPMPowerValue		0xa5
+#define StaGetPMFrequencyValue	0xa6
+#define StaGetLightLevelValue	0xa7
+#define StaGetLightStatus		0xa8
+#define StaGetTimeStatus		0xa9
+#define StaGetDateStatus		0xaa
+#define StaGetWarningStatus		0xab
+#define StaSetControlStatus		0xac
+#define StaSetLightLevelValue	0xad
+#define StaSetLightStatus		0xae
+#define StaSetTimeStatus		0xaf
+#define StaSetDateStatus		0xb0
+#define StaSetSchedulerStart	0xb1
+#define StaSetSchedulerData		0xb2
+#define StaSetSchedulerEnd		0xb3
 
 /* USER CODE END PD */
 

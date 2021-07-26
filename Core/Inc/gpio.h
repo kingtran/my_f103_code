@@ -11,7 +11,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include "comm.h"
+#include "physical.h"
 
 uint8_t GPIO_u8ButtonInit();
 uint8_t GPIO_u8ButtonRead();
