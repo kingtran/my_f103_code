@@ -14,7 +14,12 @@ extern "C" {
 #endif
 
 #include "comm.h"
-#include "physical.h"
+#include "gpio.h"
+#include "ligt.h"
+#include "rtc.h"
+#include "dbug.h"
+#include "nvm.h"
+#include "sim.h"
 
 /*StaGetMcuVersion
 StaGetControlStatus
