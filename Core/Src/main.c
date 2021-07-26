@@ -22,12 +22,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "gpio.h"
-#include "ligt.h"
-#include "rtc.h"
-#include "dbug.h"
-#include "nvm.h"
-#include "sim.h"
 #include "app.h"
 /* USER CODE END Includes */
 
@@ -644,7 +638,7 @@ uint8_t u8CheckSetup(uint8_t u8State)
 	// Get
 	if(u8State == StaGetMcuVersion)
 	{
-
+		APP_vGetMcuVersion();
 		return u8MachineRunState;
 	}
 	if(u8State == StaGetControlStatus)

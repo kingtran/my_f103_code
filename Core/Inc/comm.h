@@ -15,7 +15,7 @@ extern "C" {
 #include "main.h"
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define MainVersion		0x0001
+#define MinorVersion		0x0001
 #define MajorVersion	0x0001
 
 #define ENB 0
